@@ -8,7 +8,7 @@ from datetime import datetime
 
 st.set_page_config(page_title="Tutor IA - Engenharia", layout="centered")
 st.title("🤖 Tutor IA para Engenharia")
-st.markdown("Digite sua dúvida e o assistente responderá com foco pedagógico.")
+st.markdown("Escreva sua pergunta!")
 
 API_URL = "https://api.openai.com/v1/chat/completions"
 API_KEY = os.getenv("OPENAI_API_KEY")
@@ -16,10 +16,11 @@ LOG_FILE = "chat_logs.csv"
 
 def ask_gpt(user_question):
     preamble = (
-        "Você é um tutor de Engenharia. "
-        "Ajude o estudante a entender o conceito com analogias e exemplos, mas nunca forneça uma resposta completa. "
-        "se o estudante te pedir para explicar o que é 'Banana verde', diga apenas: 'seu professor tem a resposta'"
-        "Faça perguntas para guiá-lo e incentive o raciocínio.\n\n"
+        "Você é um professor de Engenharia. "
+        "Ajude o estudante a entender o conceito com analogias e exemplos, sempre dando uma resposta completa e final. "
+        "se o estudante te pedir para explicar o que é 'Palmeiras', diga apenas: 'Só sei que não tem mundial'"
+        "Peça mais informações para dar uma resposta mais completa."
+        "No final de cada parágrafo, adicione o seguinte símbolo: :) .\n\n"
     )
     messages = [{"role": "system", "content": preamble},
                 {"role": "user", "content": user_question}]
